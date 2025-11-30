@@ -94,7 +94,7 @@ const Home = () => {
         </div>
 
         {/* Menu buttons */}
-        <div className="space-y-6 mb-16">
+        <div className="space-y-8 mb-16 space-x-4">
           <button
             onClick={handlePlay}
             className="group p-20 relative w-80 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-4 rounded-lg font-bold text-xl tracking-wide transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 cursor-pointer"
