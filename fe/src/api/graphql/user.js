@@ -1,6 +1,22 @@
 import graphqlClient from './client';
 
 /**
+ * Extract error message from GraphQL error response
+ * @param {Array} errors 
+ * @returns {string}
+ */
+const extractErrorMessage = (errors) => {
+  if (errors && errors.length > 0) {
+    const firstError = errors[0];
+    if (firstError.message === 'Internal server error' && firstError.extensions?.debugMessage) {
+      return firstError.extensions.debugMessage;
+    }
+    return firstError.message;
+  }
+  return 'An unknown error occurred';
+};
+
+/**
  * Login user with email and password
  * @param {string} email - User email
  * @param {string} password - User password
@@ -29,7 +45,7 @@ export const login = async (email, password) => {
     });
 
     if (response.data.errors) {
-      throw new Error(response.data.errors[0].message);
+      throw new Error(extractErrorMessage(response.data.errors));
     }
 
     const loginData = response.data.data.login;
@@ -41,7 +57,7 @@ export const login = async (email, password) => {
     };
   } catch (error) {
     if (error.response?.data?.errors) {
-      throw new Error(error.response.data.errors[0].message);
+      throw new Error(extractErrorMessage(error.response.data.errors));
     }
     throw error;
   }
@@ -77,7 +93,7 @@ export const register = async (email, password, username) => {
     });
 
     if (response.data.errors) {
-      throw new Error(response.data.errors[0].message);
+      throw new Error(extractErrorMessage(response.data.errors));
     }
 
     // Register returns User, not LoginResponse, so we need to login after registration
@@ -85,7 +101,7 @@ export const register = async (email, password, username) => {
     return await login(email, password);
   } catch (error) {
     if (error.response?.data?.errors) {
-      throw new Error(error.response.data.errors[0].message);
+      throw new Error(extractErrorMessage(error.response.data.errors));
     }
     throw error;
   }
@@ -109,17 +125,17 @@ export const forgotPassword = async (email) => {
       `,
       variables: {
         email,
-      },
+        },
     });
 
     if (response.data.errors) {
-      throw new Error(response.data.errors[0].message);
+      throw new Error(extractErrorMessage(response.data.errors));
     }
 
     return response.data.data.forgotPassword;
   } catch (error) {
     if (error.response?.data?.errors) {
-      throw new Error(error.response.data.errors[0].message);
+      throw new Error(extractErrorMessage(error.response.data.errors));
     }
     throw error;
   }
@@ -154,7 +170,7 @@ export const loginWithGoogle = async (token) => {
     });
 
     if (response.data.errors) {
-      throw new Error(response.data.errors[0].message);
+      throw new Error(extractErrorMessage(response.data.errors));
     }
 
     const loginData = response.data.data.loginWithGoogle;
@@ -165,9 +181,42 @@ export const loginWithGoogle = async (token) => {
     };
   } catch (error) {
     if (error.response?.data?.errors) {
-      throw new Error(error.response.data.errors[0].message);
+      throw new Error(extractErrorMessage(error.response.data.errors));
     }
     throw error;
   }
 };
 
+/**
+ * Get all users
+ * @returns {Promise<Array>}
+ */
+export const getUsers = async () => {
+  try {
+    const response = await graphqlClient.post('', {
+      query: `
+        query GetUsers {
+          users {
+            id
+            email
+            username
+            role
+            provider
+            email_verified_at
+          }
+        }
+      `,
+    });
+
+    if (response.data.errors) {
+      throw new Error(extractErrorMessage(response.data.errors));
+    }
+
+    return response.data.data.users;
+  } catch (error) {
+    if (error.response?.data?.errors) {
+      throw new Error(extractErrorMessage(error.response.data.errors));
+    }
+    throw error;
+  }
+};

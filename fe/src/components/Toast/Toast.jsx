@@ -33,7 +33,7 @@ const Toast = ({ toast, onRemove }) => {
 
       return () => clearTimeout(timer);
     }
-  }, [toast.duration]);
+  }, [toast.duration, toast.id]);
 
   const handleClose = () => {
     setIsExiting(true);

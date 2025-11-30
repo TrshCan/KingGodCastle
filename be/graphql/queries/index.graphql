@@ -3,6 +3,7 @@ type Query {
   
   # User Queries
   me: User @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@me")
+  users: [User!]! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@users")
   
   # Hero Queries
   heroes: [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroes")

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useToast } from '../contexts/ToastContext';
-import { login } from '../api/graphql/user';
+import { useToast } from '../../contexts/ToastContext';
+import { login } from '../../api/graphql/user';
 import { Lock, Mail, LogIn, ArrowLeft } from 'lucide-react';
 import { FaGoogle, FaFacebook, FaGithub } from 'react-icons/fa';
 

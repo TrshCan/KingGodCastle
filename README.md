@@ -10,6 +10,113 @@ A full-stack application with Laravel backend, React frontend, GraphQL API, and 
 - **Database**: MySQL 8.0
 - **Containerization**: Docker & Docker Compose
 
+## Architecture Flow
+
+The application follows a layered architecture pattern for clean separation of concerns:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         FRONTEND LAYER                          │
+│  React Components → Axios HTTP Client → GraphQL Queries/Mutations│
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         API LAYER                               │
+│                    GraphQL Endpoint                             │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      RESOLVER LAYER                             │
+│  • Authentication & Authorization Checks                        │
+│  • Request Validation                                           │
+│  • Route GraphQL requests to appropriate services               │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      SERVICE LAYER                              │
+│  • Business Logic Implementation                                │
+│  • Input Validation & Sanitization                             │
+│  • Data Transformation                                          │
+│  • Orchestrate multiple repository calls                       │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    REPOSITORY LAYER                             │
+│  • Database Communication                                       │
+│  • Query Building                                               │
+│  • Data Persistence                                             │
+│  • ORM/Eloquent Operations                                      │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       DATABASE LAYER                            │
+│                         MySQL 8.0                               │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Request Flow Example
+
+1. **Frontend**: User clicks "Login" button
+   ```javascript
+   // fe/src/api/graphql/user.js
+   axios.post('/graphql', { query: LOGIN_MUTATION, variables: { email, password } })
+   ```
+
+2. **GraphQL Endpoint**: Receives the request
+   ```
+   POST /graphql
+   ```
+
+3. **Resolver**: Handles authentication and authorization
+   ```php
+   // be/app/GraphQL/Mutations/LoginMutation.php
+   public function resolve($root, array $args, $context, ResolveInfo $info)
+   {
+       // Check authentication
+       // Validate request
+       // Call service layer
+   }
+   ```
+
+4. **Service**: Validates inputs and implements business logic
+   ```php
+   // be/app/Services/AuthService.php
+   public function login($email, $password)
+   {
+       // Validate email format
+       // Validate password strength
+       // Call repository to find user
+   }
+   ```
+
+5. **Repository**: Communicates with database
+   ```php
+   // be/app/Repositories/UserRepository.php
+   public function findByEmail($email)
+   {
+       return User::where('email', $email)->first();
+   }
+   ```
+
+6. **Database**: Returns data
+   ```sql
+   SELECT * FROM users WHERE email = ?
+   ```
+
+### Layer Responsibilities
+
+| Layer | Responsibilities | Should NOT |
+|-------|-----------------|------------|
+| **Frontend** | UI/UX, User interactions, State management | Direct database access, Business logic |
+| **Resolver** | Auth/Authorization, Request routing | Business logic, Direct DB queries |
+| **Service** | Business logic, Validation, Data transformation | Direct DB queries, UI concerns |
+| **Repository** | Database operations, Query building | Business logic, Validation |
+
 ## Project Structure
 
 ```

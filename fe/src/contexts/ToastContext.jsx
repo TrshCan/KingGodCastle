@@ -24,12 +24,6 @@ export const ToastProvider = ({ children }) => {
       return [...newToasts, toast];
     });
 
-    if (duration > 0) {
-      setTimeout(() => {
-        removeToast(id);
-      }, duration);
-    }
-
     return id;
   }, []);
 

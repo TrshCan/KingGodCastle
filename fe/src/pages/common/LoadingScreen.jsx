@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '../contexts/ToastContext';
-import loadingMessagesJson from '../assets/json/messages.json';
-import bgVideo from '../assets/videos/loading.gif';
+import { useToast } from '../../contexts/ToastContext';
+import loadingMessagesJson from '../../assets/json/messages.json';
+import bgVideo from '../../assets/videos/loading.gif';
 import { Loader2 } from 'lucide-react';
 
 const LoadingScreen = () => {
