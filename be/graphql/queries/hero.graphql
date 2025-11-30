@@ -1,0 +1,6 @@
+# Hero Queries
+heroes: [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroes")
+hero(id: ID!): Hero @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@hero")
+heroesByRegion(regionId: ID!): [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroesByRegion")
+heroesByClass(classId: ID!): [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroesByClass")
+

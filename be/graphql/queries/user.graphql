@@ -1,0 +1,3 @@
+# User Queries
+me: User @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@me")
+

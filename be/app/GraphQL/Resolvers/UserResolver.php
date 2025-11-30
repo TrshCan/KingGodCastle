@@ -39,6 +39,19 @@ class UserResolver
         ];
     }
 
+    public function loginWithGoogle($root, array $args)
+    {
+        $user = $this->userService->loginWithGoogle($args['token']);
+        
+        // Create token (if using Laravel Sanctum/Passport)
+        // $token = $user->createToken('auth-token')->plainTextToken;
+        
+        return [
+            'user' => $user,
+            // 'token' => $token,
+        ];
+    }
+
     public function updateProfile($root, array $args)
     {
         $user = Auth::user();

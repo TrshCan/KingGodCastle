@@ -1,0 +1,10 @@
+type HeroSkill {
+  id: ID!
+  heroId: Int!
+  name: String!
+  description: String
+  type: String!
+  icon: String
+  hero: Hero @belongsTo
+}
+

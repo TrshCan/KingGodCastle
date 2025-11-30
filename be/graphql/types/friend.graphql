@@ -1,0 +1,9 @@
+type Friend {
+  id: ID!
+  userId: Int!
+  friendId: Int!
+  status: String!
+  user: User @belongsTo
+  friend: User @belongsTo(relation: "friend")
+}
+

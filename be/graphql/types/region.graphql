@@ -1,0 +1,8 @@
+type Region {
+  id: ID!
+  name: String!
+  description: String
+  icon: String
+  heroes: [Hero!]! @hasMany
+}
+

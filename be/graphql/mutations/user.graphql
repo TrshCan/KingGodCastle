@@ -1,0 +1,5 @@
+# User Mutations
+register(input: RegisterInput!): User! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@register")
+login(email: String!, password: String!): LoginResponse! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@login")
+updateProfile(input: UpdateProfileInput!): User! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@updateProfile")
+

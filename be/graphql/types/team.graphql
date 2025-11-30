@@ -1,0 +1,20 @@
+type Team {
+  id: ID!
+  userId: Int!
+  name: String
+  slot1: Int
+  slot2: Int
+  slot3: Int
+  slot4: Int
+  slot5: Int
+  slot6: Int
+  user: User @belongsTo
+  hero1: UserHero @belongsTo(relation: "hero1")
+  hero2: UserHero @belongsTo(relation: "hero2")
+  hero3: UserHero @belongsTo(relation: "hero3")
+  hero4: UserHero @belongsTo(relation: "hero4")
+  hero5: UserHero @belongsTo(relation: "hero5")
+  hero6: UserHero @belongsTo(relation: "hero6")
+  relics: [Sundry!]! @belongsToMany
+}
+

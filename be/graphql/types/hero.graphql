@@ -1,0 +1,16 @@
+type Hero {
+  id: ID!
+  name: String!
+  regionId: Int!
+  classId: Int!
+  title: String
+  description: String
+  icon: String
+  illustration: String
+  card: String
+  region: Region @belongsTo
+  heroClass: HeroClass @belongsTo(relation: "heroClass")
+  baseStats: HeroBaseStat @hasOne
+  skills: [HeroSkill!]! @hasMany
+}
+

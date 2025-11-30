@@ -1,0 +1,4 @@
+# UserHero Mutations
+acquireHero(heroId: ID!): UserHero! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@acquireHero")
+addExperience(userHeroId: ID!, xp: Int!): UserHero! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@addExperience")
+

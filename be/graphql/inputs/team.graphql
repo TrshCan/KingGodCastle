@@ -1,0 +1,20 @@
+input CreateTeamInput {
+  name: String
+  slot1: Int
+  slot2: Int
+  slot3: Int
+  slot4: Int
+  slot5: Int
+  slot6: Int
+}
+
+input UpdateTeamInput {
+  name: String
+  slot1: Int
+  slot2: Int
+  slot3: Int
+  slot4: Int
+  slot5: Int
+  slot6: Int
+}
+

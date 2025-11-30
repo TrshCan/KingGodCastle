@@ -1,0 +1,5 @@
+# Team Mutations
+createTeam(input: CreateTeamInput!): Team! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@createTeam")
+updateTeam(id: ID!, input: UpdateTeamInput!): Team! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@updateTeam")
+deleteTeam(id: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@deleteTeam")
+

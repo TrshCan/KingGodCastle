@@ -1,0 +1,3 @@
+# Inventory Queries
+myInventory: [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@myInventory")
+

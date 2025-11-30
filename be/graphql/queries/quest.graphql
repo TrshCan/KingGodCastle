@@ -1,0 +1,4 @@
+# Quest Queries
+dailyQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@dailyQuests")
+weeklyQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@weeklyQuests")
+

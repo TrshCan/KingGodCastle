@@ -1,10 +1,20 @@
 import { StrictMode } from 'react'
+import React from "react";
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import Auth from './pages/Auth.jsx'
+import App from './App.jsx'
+import { ToastProvider } from './contexts/ToastContext'
+import { ToastContainer } from './components/Toast'
+
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Auth />
-  </StrictMode>,
+    <StrictMode>
+        <BrowserRouter>
+            <ToastProvider>
+                <App/>
+                <ToastContainer />
+            </ToastProvider>
+        </BrowserRouter>
+    </StrictMode>
 )

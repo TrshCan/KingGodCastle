@@ -1,0 +1,29 @@
+type HeroBaseStat {
+  id: ID!
+  heroId: Int!
+  ATK: Int!
+  Spell: Int!
+  ATK_SPEED: Float!
+  MP: Int!
+  HP: Int!
+  Damage_Dealt: Int!
+  Normal_Attack_Amplification: Float!
+  Skill_Amplification: Float!
+  Special_Damage: Int!
+  Physical_CRIT_Damage: Float!
+  Spell_CRIT_Damage: Float!
+  Physical_CRIT_Chance: Float!
+  Spell_CRIT_Chance: Float!
+  Physical_DEF: Int!
+  Spell_DEF: Int!
+  Mighty_Block: Int!
+  Damage_Taken: Int!
+  EVA: Float!
+  Outgoing_Healing: Int!
+  Guard: Int!
+  Physical_HP_Drain: Float!
+  Spell_HP_Drain: Float!
+  Execution_Rate: Float!
+  hero: Hero @belongsTo
+}
+

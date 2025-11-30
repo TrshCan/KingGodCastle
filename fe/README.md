@@ -1,16 +1,85 @@
-# React + Vite
+# Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite application with authentication and Google OAuth.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Install Dependencies
 
-## React Compiler
+```bash
+npm install
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Configure Environment
 
-## Expanding the ESLint configuration
+```bash
+# Copy the example env file
+cp .env.example .env
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Important**: Edit `.env` and add your Google Client ID:
+```env
+VITE_GOOGLE_CLIENT_ID=your-actual-client-id.apps.googleusercontent.com
+```
+
+**Don't have a Google Client ID yet?** See: `SETUP_GOOGLE_CLIENT_ID.md`
+
+### 3. Run Development Server
+
+```bash
+npm run dev
+```
+
+Visit: http://localhost:5173
+
+## Features
+
+- ✅ Login / Register with email & password
+- ✅ Google OAuth Sign-In
+- ✅ Toast notifications
+- ✅ Forgot password flow
+- ✅ User profile with avatar
+- ✅ Responsive design
+
+## Pages
+
+- `/login` - Login page
+- `/register` - Registration page
+- `/forgot-password` - Password reset
+- `/` - Home/Dashboard
+
+## Google OAuth Setup
+
+If you see "Missing required parameter: client_id" error:
+
+1. **Quick fix**: Follow `SETUP_GOOGLE_CLIENT_ID.md`
+2. **Detailed guide**: See `GOOGLE_OAUTH_SETUP.md` in root directory
+
+Or skip Google login and use email/password authentication.
+
+## Tech Stack
+
+- React 19.1.1
+- Vite 7.1.7
+- React Router DOM 7.9.6
+- Tailwind CSS 4.1.14
+- Axios 1.13.2
+- Lucide React 0.555.0
+
+## Documentation
+
+- `SETUP_GOOGLE_CLIENT_ID.md` - How to get Google Client ID (5 min setup)
+- `GOOGLE_LOGIN_USAGE.md` - Using Google login in your app
+- `src/components/Toast/README.md` - Toast notification system
+
+## Troubleshooting
+
+### Google Sign-In not working?
+1. Check that `VITE_GOOGLE_CLIENT_ID` is set in `.env`
+2. Restart the dev server after changing `.env`
+3. Clear browser cache
+4. See `SETUP_GOOGLE_CLIENT_ID.md` for detailed setup
+
+### API connection issues?
+- Make sure backend is running on `http://localhost:8001`
+- Check `VITE_API_URL` in `.env`

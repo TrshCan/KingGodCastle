@@ -1,0 +1,15 @@
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  role: String!
+  icon: String
+  avatar: String
+  provider: String
+  google_id: String
+  email_verified_at: String
+  userHeroes: [UserHero!]! @hasMany
+  teams: [Team!]! @hasMany
+  inventory: [Inventory!]! @hasMany
+}
+

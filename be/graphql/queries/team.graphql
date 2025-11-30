@@ -1,0 +1,4 @@
+# Team Queries
+myTeams: [Team!]! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@myTeams")
+team(id: ID!): Team @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@team")
+

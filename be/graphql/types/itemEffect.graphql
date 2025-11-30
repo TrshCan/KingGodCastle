@@ -1,0 +1,10 @@
+type ItemEffect {
+  id: ID!
+  itemId: Int!
+  statName: String!
+  modifierType: String!
+  value: Float!
+  note: String
+  item: Sundry @belongsTo
+}
+

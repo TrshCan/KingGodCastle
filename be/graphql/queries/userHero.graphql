@@ -1,0 +1,4 @@
+# UserHero Queries
+myHeroes: [UserHero!]! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@myHeroes")
+userHero(id: ID!): UserHero @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@userHero")
+

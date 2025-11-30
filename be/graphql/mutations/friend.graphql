@@ -1,0 +1,5 @@
+# Friend Mutations
+sendFriendRequest(friendId: ID!): Friend! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@sendFriendRequest")
+acceptFriendRequest(friendId: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@acceptFriendRequest")
+removeFriend(friendId: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@removeFriend")
+

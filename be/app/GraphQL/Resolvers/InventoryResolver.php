@@ -42,11 +42,13 @@ class InventoryResolver
             throw new \Exception("Unauthenticated", 401);
         }
 
-        return $this->inventoryService->useItem(
+        $this->inventoryService->useItem(
             $user->id,
             $args['itemId'],
             $args['userHeroId'] ?? null
         );
+        
+        return ['success' => true];
     }
 }
 

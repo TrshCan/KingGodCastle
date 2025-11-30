@@ -53,6 +53,75 @@ class UserService
         return $this->userRepository->getUserWithHeroes($userId);
     }
 
+    public function loginWithGoogle(string $token): User
+    {
+        // Verify Google token
+        $googleUser = $this->verifyGoogleToken($token);
+        
+        if (!$googleUser) {
+            throw new \Exception('Invalid Google token', 401);
+        }
+
+        // Find or create user
+        $user = $this->userRepository->findByEmail($googleUser['email']);
+
+        if ($user) {
+            // Update existing user with Google info if not already set
+            if (!$user->google_id) {
+                $this->userRepository->update($user->id, [
+                    'google_id' => $googleUser['id'],
+                    'provider' => 'google',
+                    'avatar' => $googleUser['picture'] ?? null,
+                    'email_verified_at' => now(),
+                ]);
+                $user = $user->fresh();
+            }
+        } else {
+            // Create new user from Google account
+            $user = $this->userRepository->create([
+                'email' => $googleUser['email'],
+                'username' => $googleUser['name'] ?? explode('@', $googleUser['email'])[0],
+                'google_id' => $googleUser['id'],
+                'provider' => 'google',
+                'avatar' => $googleUser['picture'] ?? null,
+                'role' => 'user',
+                'email_verified_at' => now(),
+                'password' => null, // No password for OAuth users
+            ]);
+        }
+
+        return $user;
+    }
+
+    protected function verifyGoogleToken(string $token): ?array
+    {
+        try {
+            // Call Google's token verification endpoint
+            $client = new \GuzzleHttp\Client();
+            $response = $client->get('https://oauth2.googleapis.com/tokeninfo', [
+                'query' => ['id_token' => $token]
+            ]);
+
+            $data = json_decode($response->getBody(), true);
+
+            // Verify the token is valid
+            if (!isset($data['email']) || !isset($data['sub'])) {
+                return null;
+            }
+
+            return [
+                'id' => $data['sub'],
+                'email' => $data['email'],
+                'name' => $data['name'] ?? null,
+                'picture' => $data['picture'] ?? null,
+                'email_verified' => $data['email_verified'] ?? false,
+            ];
+        } catch (\Exception $e) {
+            \Log::error('Google token verification failed: ' . $e->getMessage());
+            return null;
+        }
+    }
+
     protected function validateRegistration(array $data): void
     {
         $rules = [

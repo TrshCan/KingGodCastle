@@ -1,0 +1,2 @@
+hello: String! @field(resolver: "App\\GraphQL\\Queries\\HelloResolver")
+

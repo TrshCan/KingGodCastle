@@ -1,0 +1,14 @@
+input RegisterInput {
+  email: String!
+  username: String!
+  password: String!
+  role: String
+}
+
+input UpdateProfileInput {
+  email: String
+  username: String
+  password: String
+  icon: String
+}
+

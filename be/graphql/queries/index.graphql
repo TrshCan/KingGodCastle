@@ -1,0 +1,31 @@
+type Query {
+  hello: String! @field(resolver: "App\\GraphQL\\Queries\\HelloResolver")
+  
+  # User Queries
+  me: User @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@me")
+  
+  # Hero Queries
+  heroes: [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroes")
+  hero(id: ID!): Hero @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@hero")
+  heroesByRegion(regionId: ID!): [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroesByRegion")
+  heroesByClass(classId: ID!): [Hero!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroesByClass")
+  
+  # UserHero Queries
+  myHeroes: [UserHero!]! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@myHeroes")
+  userHero(id: ID!): UserHero @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@userHero")
+  
+  # Team Queries
+  myTeams: [Team!]! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@myTeams")
+  team(id: ID!): Team @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@team")
+  
+  # Quest Queries
+  dailyQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@dailyQuests")
+  weeklyQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@weeklyQuests")
+  
+  # Friend Queries
+  myFriends: [Friend!]! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@myFriends")
+  pendingRequests: [Friend!]! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@pendingRequests")
+  
+  # Inventory Queries
+  myInventory: [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@myInventory")
+}

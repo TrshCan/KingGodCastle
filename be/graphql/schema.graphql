@@ -1,4 +1,26 @@
-type Query {
-  hello: String! @field(resolver: "App\\GraphQL\\Queries\\HelloResolver")
-}
+# Import all types
+#import types/user.graphql
+#import types/hero.graphql
+#import types/userHero.graphql
+#import types/team.graphql
+#import types/quest.graphql
+#import types/friend.graphql
+#import types/inventory.graphql
+#import types/sundry.graphql
+#import types/itemEffect.graphql
+#import types/heroBaseStat.graphql
+#import types/userHeroStat.graphql
+#import types/region.graphql
+#import types/heroClass.graphql
+#import types/heroSkill.graphql
+#import types/response.graphql
 
+# Import all inputs
+#import inputs/user.graphql
+#import inputs/team.graphql
+
+# Import Query type
+#import queries/index.graphql
+
+# Import Mutation type
+#import mutations/index.graphql

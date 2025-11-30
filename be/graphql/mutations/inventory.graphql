@@ -1,0 +1,4 @@
+# Inventory Mutations
+addItem(itemId: ID!, quantity: Int): Inventory! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@addItem")
+useItem(itemId: ID!, userHeroId: ID): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@useItem")
+

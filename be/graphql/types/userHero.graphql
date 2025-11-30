@@ -1,0 +1,13 @@
+type UserHero {
+  id: ID!
+  userId: Int!
+  heroId: Int!
+  level: Int!
+  xp: Int!
+  user: User @belongsTo
+  hero: Hero @belongsTo
+  stats: UserHeroStat @hasOne
+  accessories: [Sundry!]! @belongsToMany
+  legacies: [Sundry!]! @belongsToMany
+}
+

@@ -1,0 +1,10 @@
+# Response Types
+type LoginResponse {
+  user: User!
+  token: String
+}
+
+type SuccessResponse {
+  success: Boolean!
+}
+

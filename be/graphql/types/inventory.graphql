@@ -1,0 +1,9 @@
+type Inventory {
+  id: ID!
+  userId: Int!
+  itemId: Int!
+  quantity: Int!
+  user: User @belongsTo
+  item: Sundry @belongsTo(relation: "item")
+}
+

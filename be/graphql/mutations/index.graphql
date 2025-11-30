@@ -1,0 +1,28 @@
+type Mutation {
+  # User Mutations
+  register(input: RegisterInput!): User! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@register")
+  login(email: String!, password: String!): LoginResponse! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@login")
+  loginWithGoogle(token: String!): LoginResponse! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@loginWithGoogle")
+  updateProfile(input: UpdateProfileInput!): User! @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@updateProfile")
+  
+  # UserHero Mutations
+  acquireHero(heroId: ID!): UserHero! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@acquireHero")
+  addExperience(userHeroId: ID!, xp: Int!): UserHero! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@addExperience")
+  
+  # Team Mutations
+  createTeam(input: CreateTeamInput!): Team! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@createTeam")
+  updateTeam(id: ID!, input: UpdateTeamInput!): Team! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@updateTeam")
+  deleteTeam(id: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\TeamResolver@deleteTeam")
+  
+  # Quest Mutations
+  completeQuest(id: ID!): Quest! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@completeQuest")
+  
+  # Friend Mutations
+  sendFriendRequest(friendId: ID!): Friend! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@sendFriendRequest")
+  acceptFriendRequest(friendId: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@acceptFriendRequest")
+  removeFriend(friendId: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@removeFriend")
+  
+  # Inventory Mutations
+  addItem(itemId: ID!, quantity: Int): Inventory! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@addItem")
+  useItem(itemId: ID!, userHeroId: ID): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@useItem")
+}

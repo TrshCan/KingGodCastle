@@ -1,0 +1,4 @@
+# Friend Queries
+myFriends: [Friend!]! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@myFriends")
+pendingRequests: [Friend!]! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@pendingRequests")
+
