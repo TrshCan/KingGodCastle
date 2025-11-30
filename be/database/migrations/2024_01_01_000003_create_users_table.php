@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('username', 100)->unique();
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->string('icon', 100)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

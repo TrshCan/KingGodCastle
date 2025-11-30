@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../contexts/ToastContext";
 import { register } from "../api/graphql/user";
 import { Lock, Mail, User, UserPlus, ArrowLeft } from "lucide-react";
-import GoogleLoginButton from "../components/GoogleLoginButton";
+import { FaGoogle, FaFacebook, FaGithub } from 'react-icons/fa';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -68,6 +68,10 @@ const Register = () => {
     }
   };
 
+  const handleSocialLogin = (provider) => {
+    toast.info(`${provider} registration is in progress... 🚧`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center relative overflow-hidden px-4 py-8">
       {/* Animated background elements */}
@@ -85,152 +89,177 @@ const Register = () => {
         <span className="font-medium">Back to Menu</span>
       </Link>
 
-      {/* Register form container - 2 column layout */}
-      <div className="relative z-10 w-full max-w-4xl bg-slate-800/40 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 p-8">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-4 border border-purple-500/30">
-            <UserPlus className="w-8 h-8 text-purple-400" />
-          </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
-          <p className="text-purple-300">Join the adventure today</p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          {/* 2 Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-            <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium text-purple-200 mb-2"
-              >
-                Username
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  value={formData.username}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                  placeholder="johndoe"
-                  disabled={isLoading}
-                />
+      {/* Register container - 2 columns */}
+      <div className="relative z-10 w-full max-w-5xl bg-slate-800/40 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left Column - Traditional Register */}
+          <div className="p-8 md:p-12">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-500/20 rounded-full mb-4 border border-purple-500/30">
+                <UserPlus className="w-8 h-8 text-purple-400" />
               </div>
+              <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
+              <p className="text-purple-300">Join the adventure today</p>
             </div>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-purple-200 mb-2"
-              >
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                  placeholder="you@example.com"
-                  disabled={isLoading}
-                />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-purple-200 mb-2"
+                >
+                  Username
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
+                  <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    value={formData.username}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                    placeholder="johndoe"
+                    disabled={isLoading}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-purple-200 mb-2"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                  placeholder="••••••••"
-                  disabled={isLoading}
-                />
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-purple-200 mb-2"
+                >
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                    placeholder="you@example.com"
+                    disabled={isLoading}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-purple-200 mb-2"
-              >
-                Confirm Password
-              </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
-                  placeholder="••••••••"
-                  disabled={isLoading}
-                />
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-purple-200 mb-2"
+                >
+                  Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                    placeholder="••••••••"
+                    disabled={isLoading}
+                  />
+                </div>
               </div>
+
+              <div>
+                <label
+                  htmlFor="confirmPassword"
+                  className="block text-sm font-medium text-purple-200 mb-2"
+                >
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-purple-400" />
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-3 bg-slate-900/50 border border-purple-500/30 rounded-lg text-white placeholder-purple-300/50 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition"
+                    placeholder="••••••••"
+                    disabled={isLoading}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-3 rounded-lg font-bold text-lg tracking-wide transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer mt-6"
+              >
+                {isLoading ? "Creating account..." : "Create Account"}
+              </button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-purple-200">
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="text-purple-400 hover:text-purple-300 font-bold transition cursor-pointer"
+                >
+                  Sign in
+                </Link>
+              </p>
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white py-3 rounded-lg font-bold text-lg tracking-wide transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 cursor-pointer"
-          >
-            {isLoading ? "Creating account..." : "Create Account"}
-          </button>
-        </form>
-
-        <div className="mt-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-500/30"></div>
+          {/* Right Column - Social Register */}
+          <div className="p-8 md:p-12 bg-slate-900/30 border-l border-white/10">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-white mb-2">Quick Sign Up</h2>
+              <p className="text-purple-300 text-sm">Register with your social account</p>
             </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-slate-800/40 text-purple-300">
-                Or continue with
-              </span>
+
+            <div className="space-y-4">
+              {/* Google */}
+              <button
+                onClick={() => handleSocialLogin('Google')}
+                className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-800 py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <FaGoogle className="w-5 h-5 text-red-500" />
+                <span>Continue with Google</span>
+              </button>
+
+              {/* Facebook */}
+              <button
+                onClick={() => handleSocialLogin('Facebook')}
+                className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <FaFacebook className="w-5 h-5" />
+                <span>Continue with Facebook</span>
+              </button>
+
+              {/* GitHub */}
+              <button
+                onClick={() => handleSocialLogin('GitHub')}
+                className="w-full flex items-center justify-center gap-3 bg-gray-800 hover:bg-gray-900 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <FaGithub className="w-5 h-5" />
+                <span>Continue with GitHub</span>
+              </button>
+            </div>
+
+            <div className="mt-8 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
+              <p className="text-purple-200 text-sm text-center">
+                <span className="font-semibold">Fast & Secure</span>
+                <br />
+                Create account instantly with social login
+              </p>
             </div>
           </div>
-
-          <div className="mt-6">
-            <GoogleLoginButton />
-          </div>
-        </div>
-
-        <div className="mt-6 text-center">
-          <p className="text-purple-200">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-purple-400 hover:text-purple-300 font-bold transition cursor-pointer"
-            >
-              Sign in
-            </Link>
-          </p>
         </div>
       </div>
 
-      {/* Decorative corner elements */}
-      <div className="fixed top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
     </div>
   );
 };

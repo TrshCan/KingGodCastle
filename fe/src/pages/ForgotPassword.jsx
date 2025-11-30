@@ -74,11 +74,6 @@ const ForgotPassword = () => {
           </div>
         </div>
 
-        {/* Decorative corner elements */}
-        <div className="fixed top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-        <div className="fixed top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
-        <div className="fixed bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-        <div className="fixed bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
       </div>
     );
   }
@@ -149,11 +144,6 @@ const ForgotPassword = () => {
         </div>
       </div>
 
-      {/* Decorative corner elements */}
-      <div className="fixed top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-purple-500/30 pointer-events-none"></div>
-      <div className="fixed bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-purple-500/30 pointer-events-none"></div>
     </div>
   );
 };

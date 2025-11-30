@@ -34,6 +34,8 @@ return new class extends Migration
             $table->decimal('Physical_HP_Drain', 5, 2)->default(0.00);
             $table->decimal('Spell_HP_Drain', 5, 2)->default(0.00);
             $table->decimal('Execution_Rate', 5, 2)->default(0.00);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

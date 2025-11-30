@@ -12,6 +12,8 @@ return new class extends Migration
             $table->foreignId('user_hero_id')->constrained('user_heroes')->cascadeOnDelete();
             $table->foreignId('legacy_id')->constrained('sundries')->cascadeOnDelete();
             $table->primary(['user_hero_id', 'legacy_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

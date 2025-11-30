@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('slot4')->nullable()->constrained('user_heroes')->nullOnDelete();
             $table->foreignId('slot5')->nullable()->constrained('user_heroes')->nullOnDelete();
             $table->foreignId('slot6')->nullable()->constrained('user_heroes')->nullOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

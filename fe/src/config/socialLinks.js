@@ -4,7 +4,7 @@ import { Github, Twitter, Youtube, Twitch, MessageCircle } from 'lucide-react';
 export const socialLinks = [
   {
     icon: Github,
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/TrshCan',
     label: 'GitHub',
     enabled: true,
   },
@@ -12,11 +12,11 @@ export const socialLinks = [
     icon: Twitter,
     url: 'https://twitter.com/yourusername',
     label: 'Twitter',
-    enabled: true,
+    enabled: false,
   },
   {
     icon: Youtube,
-    url: 'https://youtube.com/@yourusername',
+    url: 'https://youtube.com/@stinkylemonofficial',
     label: 'YouTube',
     enabled: true,
   },
@@ -24,13 +24,13 @@ export const socialLinks = [
     icon: Twitch,
     url: 'https://twitch.tv/yourusername',
     label: 'Twitch',
-    enabled: true,
+    enabled: false,
   },
   {
     icon: MessageCircle,
     url: 'https://discord.gg/yourinvite',
     label: 'Discord',
-    enabled: true,
+    enabled: false,
   },
 ];
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('icon', 100)->nullable();
             $table->string('illustration', 100)->nullable();
             $table->string('card', 255)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

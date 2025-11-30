@@ -12,6 +12,8 @@ return new class extends Migration
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
             $table->foreignId('relic_id')->constrained('sundries')->cascadeOnDelete();
             $table->primary(['team_id', 'relic_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
