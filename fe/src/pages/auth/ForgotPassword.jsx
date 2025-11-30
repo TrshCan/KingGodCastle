@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useToast } from '../contexts/ToastContext';
-import { forgotPassword } from '../api/graphql/user';
+import { useToast } from '../../contexts/ToastContext';
+import { forgotPassword } from '../../api/graphql/user';
 import { Mail, ArrowLeft, KeyRound, CheckCircle } from 'lucide-react';
 
 const ForgotPassword = () => {

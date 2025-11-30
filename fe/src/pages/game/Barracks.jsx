@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useToast } from '../contexts/ToastContext';
-import GameLayout from '../components/GameLayout';
+import { useToast } from '../../contexts/ToastContext';
+import GameLayout from '../../components/GameLayout';
 import { 
   Shield, 
   Sword, 

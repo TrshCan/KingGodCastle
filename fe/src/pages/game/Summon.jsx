@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import GameLayout from '../components/GameLayout';
+import GameLayout from '../../components/GameLayout';
 import { 
   Sparkles, 
   Star, 

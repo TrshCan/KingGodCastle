@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useToast } from '../contexts/ToastContext';
-import GameLayout from '../components/GameLayout';
+import { useToast } from '../../contexts/ToastContext';
+import GameLayout from '../../components/GameLayout';
 import { 
   Sparkles, 
   Star, 

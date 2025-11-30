@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useToast } from '../contexts/ToastContext';
-import { socialLinks, buyMeCoffeeUrl, gameVersion } from '../config/socialLinks';
+import { useToast } from '../../contexts/ToastContext';
+import { socialLinks, buyMeCoffeeUrl, gameVersion } from '../../config/socialLinks';
 import { 
   Play, 
   Settings, 
