@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title', 100)->nullable();
             $table->text('description')->nullable();
             $table->string('icon', 100)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

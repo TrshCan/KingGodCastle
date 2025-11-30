@@ -15,6 +15,8 @@ return new class extends Migration
             $table->enum('modifier_type', ['flat', 'percent', 'special'])->default('flat');
             $table->decimal('value', 6, 2);
             $table->text('note')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

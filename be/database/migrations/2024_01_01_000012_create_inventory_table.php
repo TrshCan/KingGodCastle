@@ -13,6 +13,8 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained('sundries')->cascadeOnDelete();
             $table->integer('quantity')->default(0);
             $table->primary(['user_id', 'item_id']);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -27,6 +27,10 @@ const Home = () => {
     localStorage.removeItem('user');
     setUser(null);
     toast.info('You have been logged out');
+    // Force a small delay to show the toast before state updates
+    setTimeout(() => {
+      navigate('/');
+    }, 100);
   };
 
   const handlePlay = () => {
@@ -71,10 +75,11 @@ const Home = () => {
           <span className="text-white font-medium">{user.username}</span>
           <button
             onClick={handleLogout}
-            className="ml-2 p-2 hover:bg-white/10 rounded-full transition cursor-pointer"
+            className="ml-2 p-2 hover:bg-red-500/20 rounded-full transition-all duration-200 cursor-pointer z-50"
             title="Logout"
+            type="button"
           >
-            <LogOut className="w-4 h-4 text-white" />
+            <LogOut className="w-4 h-4 text-white hover:text-red-400 transition-colors" />
           </button>
         </div>
       )}
@@ -93,10 +98,10 @@ const Home = () => {
         </div>
 
         {/* Menu buttons */}
-        <div className="space-y-8 mb-16 space-x-4">
+        <div className="space-y-8 mb-8 space-x-8">
           <button
             onClick={handlePlay}
-            className="group p-20 relative w-80 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-4 rounded-lg font-bold text-xl tracking-wide transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 cursor-pointer"
+            className="group relative w-80 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-8 py-4 rounded-lg font-bold text-xl tracking-wide transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 cursor-pointer"
           >
             <div className="flex items-center justify-center gap-3">
               <Play className="w-6 h-6 group-hover:animate-pulse" />
@@ -124,16 +129,19 @@ const Home = () => {
               <span>BUY ME A COFFEE</span>
             </div>
           </button>
+        </div>
 
-          {!user && (
+        {/* Login/Register button - centered below menu */}
+        {!user && (
+          <div className="mb-16">
             <button
               onClick={() => navigate('/login')}
               className="w-80 bg-slate-800/30 hover:bg-slate-700/30 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold text-lg tracking-wide transition-all duration-300 border border-white/10 hover:border-purple-400/50 cursor-pointer"
             >
               LOGIN / REGISTER
             </button>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Social media icons */}
         <div className="flex justify-center gap-4">
@@ -157,11 +165,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Decorative corner elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-purple-500/30"></div>
-      <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-purple-500/30"></div>
-      <div className="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-purple-500/30"></div>
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-purple-500/30"></div>
     </div>
   );
 };

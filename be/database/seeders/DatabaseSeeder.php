@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             ClassesSeeder::class,
             LevelRequirementsSeeder::class,
             XpAmountsSeeder::class,
+            SettingsSeeder::class,
         ]);
 
         // Heroes and related data
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             FriendsSeeder::class,
             InventorySeeder::class,
+            UserSettingsSeeder::class,
         ]);
 
         // User heroes and related data

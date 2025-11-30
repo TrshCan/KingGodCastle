@@ -12,12 +12,17 @@ export const useToast = () => {
 
 export const ToastProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
+  const MAX_TOASTS = 2;
 
   const addToast = useCallback((message, type = 'info', duration = 3000) => {
     const id = Date.now() + Math.random();
     const toast = { id, message, type, duration };
     
-    setToasts((prev) => [...prev, toast]);
+    setToasts((prev) => {
+      // If we already have MAX_TOASTS, remove the oldest one
+      const newToasts = prev.length >= MAX_TOASTS ? prev.slice(1) : prev;
+      return [...newToasts, toast];
+    });
 
     if (duration > 0) {
       setTimeout(() => {

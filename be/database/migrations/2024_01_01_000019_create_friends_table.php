@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('friend_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamp('created_at')->useCurrent();
             $table->enum('status', ['pending', 'accepted'])->default('pending');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

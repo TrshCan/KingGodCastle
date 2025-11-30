@@ -14,6 +14,8 @@ return new class extends Migration
             $table->foreignId('hero_id')->constrained('heroes')->cascadeOnDelete();
             $table->integer('level')->default(1);
             $table->integer('xp')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

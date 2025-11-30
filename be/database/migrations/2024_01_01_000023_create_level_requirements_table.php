@@ -11,6 +11,8 @@ return new class extends Migration
         Schema::create('level_requirements', function (Blueprint $table) {
             $table->integer('level')->primary();
             $table->integer('xp_required');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

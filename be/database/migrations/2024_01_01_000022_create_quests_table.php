@@ -14,7 +14,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('status', ['Pending', 'Completed'])->default('Pending');
             $table->enum('type', ['daily', 'weekly']);
-            $table->dateTime('created_at')->useCurrent();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

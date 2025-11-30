@@ -15,6 +15,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('type', ['passive', 'awakening', 'ultimate'])->nullable();
             $table->string('icon', 100)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

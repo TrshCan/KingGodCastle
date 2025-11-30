@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('sender_email', 255);
             $table->string('receiver_email', 255);
             $table->timestamp('received_at')->useCurrent();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
