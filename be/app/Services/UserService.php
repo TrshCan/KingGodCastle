@@ -53,6 +53,11 @@ class UserService
         return $this->userRepository->getUserWithHeroes($userId);
     }
 
+    public function getAllUsers()
+    {
+        return $this->userRepository->getAllUsers();
+    }
+
     public function loginWithGoogle(string $token): User
     {
         // Verify Google token

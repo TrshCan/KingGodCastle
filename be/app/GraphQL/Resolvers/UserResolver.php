@@ -21,6 +21,18 @@ class UserResolver
         return $this->userService->getUserProfile($user->id);
     }
 
+    public function users($root, array $args)
+    {
+        $user = Auth::user();
+        if (!$user) {
+            throw new \Exception("Unauthenticated", 401);
+        }
+
+        // TODO: Add role check here (e.g., if ($user->role !== 'admin'))
+
+        return $this->userService->getAllUsers();
+    }
+
     public function register($root, array $args)
     {
         return $this->userService->register($args);

@@ -36,5 +36,10 @@ class UserRepository extends BaseRepository
     {
         return $this->model->with('inventory.item')->find($userId);
     }
+
+    public function getAllUsers()
+    {
+        return $this->model->all();
+    }
 }
 

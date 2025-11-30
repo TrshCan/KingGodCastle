@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
+import { getUsers } from '../../api/graphql/user';
 import AdminLayout from '../../components/AdminLayout';
 import { 
   Users, 
@@ -20,59 +21,32 @@ const ManageUsers = () => {
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedUser, setSelectedUser] = useState(null);
 
-  // Mock user data
-  const users = [
-    {
-      id: 1,
-      username: 'john_doe',
-      email: 'john@example.com',
-      level: 45,
-      status: 'active',
-      heroes: 12,
-      joinDate: '2024-01-15',
-      lastLogin: '2 hours ago'
-    },
-    {
-      id: 2,
-      username: 'jane_smith',
-      email: 'jane@example.com',
-      level: 38,
-      status: 'active',
-      heroes: 8,
-      joinDate: '2024-02-20',
-      lastLogin: '1 day ago'
-    },
-    {
-      id: 3,
-      username: 'mike_johnson',
-      email: 'mike@example.com',
-      level: 52,
-      status: 'banned',
-      heroes: 15,
-      joinDate: '2023-12-10',
-      lastLogin: '1 week ago'
-    },
-    {
-      id: 4,
-      username: 'sarah_williams',
-      email: 'sarah@example.com',
-      level: 29,
-      status: 'active',
-      heroes: 6,
-      joinDate: '2024-03-05',
-      lastLogin: '5 hours ago'
-    },
-    {
-      id: 5,
-      username: 'tom_brown',
-      email: 'tom@example.com',
-      level: 41,
-      status: 'inactive',
-      heroes: 10,
-      joinDate: '2024-01-28',
-      lastLogin: '2 weeks ago'
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      const data = await getUsers();
+      // Transform data to match UI requirements if needed
+      const transformedUsers = data.map(user => ({
+        ...user,
+        status: user.email_verified_at ? 'active' : 'inactive', // Simple logic for status
+        heroes: user.userHeroes?.length || 0,
+        joinDate: new Date().toLocaleDateString(), // Placeholder as created_at is not in query yet
+        lastLogin: 'Unknown' // Placeholder
+      }));
+      setUsers(transformedUsers);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
