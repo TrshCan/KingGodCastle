@@ -35,8 +35,7 @@ const Home = () => {
       navigate('/login');
       return;
     }
-    toast.info('Starting game...');
-    // Navigate to game page when ready
+    navigate('/loading');
   };
 
   const handleSettings = () => {
