@@ -24,6 +24,7 @@ class User extends Authenticatable
         'avatar',
         'provider',
         'email_verified_at',
+        'token',
     ];
 
     protected $hidden = [

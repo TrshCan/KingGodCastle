@@ -33,6 +33,11 @@ class UserService
             ]);
         }
 
+        $token = \Illuminate\Support\Str::random(60);
+        $user->forceFill([
+            'token' => $token,
+        ])->save();
+
         return $user;
     }
 
