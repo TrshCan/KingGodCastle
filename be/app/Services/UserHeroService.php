@@ -100,5 +100,10 @@ class UserHeroService
             $stats->save();
         }
     }
+
+    public function getAllUserHeroes(?int $userId = null)
+    {
+        return $this->userHeroRepository->getAllUserHeroes($userId);
+    }
 }
 

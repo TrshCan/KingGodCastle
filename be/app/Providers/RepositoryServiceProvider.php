@@ -11,6 +11,8 @@ use App\Repositories\InventoryRepository;
 use App\Repositories\SundryRepository;
 use App\Repositories\QuestRepository;
 use App\Repositories\FriendRepository;
+use App\Repositories\RegionRepository;
+use App\Repositories\ItemEffectRepository;
 use App\Models\User;
 use App\Models\Hero;
 use App\Models\UserHero;
@@ -19,6 +21,8 @@ use App\Models\Inventory;
 use App\Models\Sundry;
 use App\Models\Quest;
 use App\Models\Friend;
+use App\Models\Region;
+use App\Models\ItemEffect;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -55,6 +59,14 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->singleton(FriendRepository::class, function ($app) {
             return new FriendRepository(new Friend());
+        });
+
+        $this->app->singleton(RegionRepository::class, function ($app) {
+            return new RegionRepository(new Region());
+        });
+
+        $this->app->singleton(ItemEffectRepository::class, function ($app) {
+            return new ItemEffectRepository(new ItemEffect());
         });
     }
 

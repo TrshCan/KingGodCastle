@@ -88,5 +88,10 @@ class FriendService
 
         return $deleted;
     }
+
+    public function getAllFriendships(?int $userId = null)
+    {
+        return $this->friendRepository->getAllFriendships($userId);
+    }
 }
 

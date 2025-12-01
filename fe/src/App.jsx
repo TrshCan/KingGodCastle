@@ -12,6 +12,13 @@ import SummonDetail from './pages/game/SummonDetail';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageUsers from './pages/admin/ManageUsers';
 import ManageHeroes from './pages/admin/ManageHeroes';
+import ManageInventories from './pages/admin/ManageInventories';
+import ManageQuests from './pages/admin/ManageQuests';
+import ManageUserHeroes from './pages/admin/ManageUserHeroes';
+import ManageFriends from './pages/admin/ManageFriends';
+import ManageRegions from './pages/admin/ManageRegions';
+import ManageItems from './pages/admin/ManageItems';
+import ManageItemEffects from './pages/admin/ManageItemEffects';
 
 function App() {
   return (
@@ -32,6 +39,13 @@ function App() {
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin/users" element={<ManageUsers />} />
       <Route path="/admin/heroes" element={<ManageHeroes />} />
+      <Route path="/admin/inventories" element={<ManageInventories />} />
+      <Route path="/admin/quests" element={<ManageQuests />} />
+      <Route path="/admin/user-heroes" element={<ManageUserHeroes />} />
+      <Route path="/admin/friends" element={<ManageFriends />} />
+      <Route path="/admin/regions" element={<ManageRegions />} />
+      <Route path="/admin/items" element={<ManageItems />} />
+      <Route path="/admin/item-effects" element={<ManageItemEffects />} />
       <Route path="/admin/analytics" element={<AdminDashboard />} />
       <Route path="/admin/reports" element={<AdminDashboard />} />
       <Route path="/admin/settings" element={<AdminDashboard />} />

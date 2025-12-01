@@ -20,7 +20,9 @@ class UserService
         $data['password'] = Hash::make($data['password']);
         $data['role'] = $data['role'] ?? 'user';
 
-        return $this->userRepository->create($data);
+        /** @var User $user */
+        $user = $this->userRepository->create($data);
+        return $user;
     }
 
     public function authenticate(string $email, string $password): ?User
@@ -43,6 +45,7 @@ class UserService
 
     public function updateProfile(int $userId, array $data): User
     {
+        /** @var User $user */
         $user = $this->userRepository->findOrFail($userId);
         
         if (isset($data['password'])) {
@@ -50,7 +53,9 @@ class UserService
         }
 
         $this->userRepository->update($userId, $data);
-        return $user->fresh();
+        /** @var User $updatedUser */
+        $updatedUser = $user->fresh();
+        return $updatedUser;
     }
 
     public function getUserProfile(int $userId): User

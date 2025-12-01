@@ -3,10 +3,13 @@
 namespace App\GraphQL\Resolvers;
 
 use App\Services\QuestService;
+use App\GraphQL\Resolvers\Traits\AuthenticatesAdmin;
 use Illuminate\Support\Facades\Auth;
 
 class QuestResolver
 {
+    use AuthenticatesAdmin;
+
     public function __construct(
         protected QuestService $questService
     ) {}
@@ -29,6 +32,12 @@ class QuestResolver
         }
 
         return $this->questService->completeQuest($args['id'], $user->id);
+    }
+
+    public function adminQuests($root, array $args)
+    {
+        $this->authenticateAdmin();
+        return $this->questService->getAllQuests();
     }
 }
 

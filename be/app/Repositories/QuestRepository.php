@@ -31,5 +31,10 @@ class QuestRepository extends BaseRepository
     {
         return $this->update($questId, ['status' => 'Completed']);
     }
+
+    public function getAllQuests()
+    {
+        return $this->model->all();
+    }
 }
 

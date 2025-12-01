@@ -63,5 +63,10 @@ class InventoryService
             // Example: increase HP, add XP, etc.
         }
     }
+
+    public function getAllInventories(?int $userId = null)
+    {
+        return $this->inventoryRepository->getAllInventories($userId);
+    }
 }
 

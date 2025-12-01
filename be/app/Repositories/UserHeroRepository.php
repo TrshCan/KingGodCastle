@@ -45,5 +45,16 @@ class UserHeroRepository extends BaseRepository
         $userHero->xp = 0;
         return $userHero->save();
     }
+
+    public function getAllUserHeroes(?int $userId = null)
+    {
+        $query = $this->model->with(['user', 'hero', 'stats']);
+        
+        if ($userId) {
+            $query->where('user_id', $userId);
+        }
+        
+        return $query->get();
+    }
 }
 
