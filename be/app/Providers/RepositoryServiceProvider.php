@@ -13,6 +13,7 @@ use App\Repositories\QuestRepository;
 use App\Repositories\FriendRepository;
 use App\Repositories\RegionRepository;
 use App\Repositories\ItemEffectRepository;
+use App\Repositories\HeroClassRepository;
 use App\Models\User;
 use App\Models\Hero;
 use App\Models\UserHero;
@@ -23,6 +24,7 @@ use App\Models\Quest;
 use App\Models\Friend;
 use App\Models\Region;
 use App\Models\ItemEffect;
+use App\Models\HeroClass;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -67,6 +69,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->singleton(ItemEffectRepository::class, function ($app) {
             return new ItemEffectRepository(new ItemEffect());
+        });
+
+        $this->app->singleton(HeroClassRepository::class, function ($app) {
+            return new HeroClassRepository(new HeroClass());
         });
     }
 

@@ -1,0 +1,22 @@
+input CreateHeroInput {
+  name: String!
+  regionId: Int!
+  classId: Int!
+  title: String
+  description: String
+  icon: String
+  illustration: String
+  card: String
+}
+
+input UpdateHeroInput {
+  name: String
+  regionId: Int
+  classId: Int
+  title: String
+  description: String
+  icon: String
+  illustration: String
+  card: String
+}
+

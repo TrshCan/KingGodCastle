@@ -13,6 +13,11 @@ class RegionResolver
         protected RegionService $regionService
     ) {}
 
+    public function regions($root, array $args)
+    {
+        return $this->regionService->getAllRegions();
+    }
+
     public function adminRegions($root, array $args)
     {
         $this->authenticateAdmin();
