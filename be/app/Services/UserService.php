@@ -63,6 +63,11 @@ class UserService
         return $this->userRepository->getAllUsers();
     }
 
+    public function authenticateByToken(string $token): ?User
+    {
+        return $this->userRepository->findByToken($token);
+    }
+
     public function loginWithGoogle(string $token): User
     {
         // Verify Google token
@@ -99,6 +104,12 @@ class UserService
                 'password' => null, // No password for OAuth users
             ]);
         }
+
+        // Generate and save authentication token
+        $authToken = \Illuminate\Support\Str::random(60);
+        $user->forceFill([
+            'token' => $authToken,
+        ])->save();
 
         return $user;
     }

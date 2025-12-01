@@ -22,6 +22,11 @@ class UserRepository extends BaseRepository
         return $this->model->where('username', $username)->first();
     }
 
+    public function findByToken(string $token): ?User
+    {
+        return $this->model->where('token', $token)->first();
+    }
+
     public function getUserWithHeroes(int $userId): ?User
     {
         return $this->model->with('userHeroes.hero', 'userHeroes.stats')->find($userId);

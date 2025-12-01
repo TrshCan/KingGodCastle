@@ -23,12 +23,34 @@ class UserResolver
 
     public function users($root, array $args)
     {
-        $user = Auth::user();
+        // Get token from Authorization header
+        $authHeader = request()->header('Authorization');
+        
+        if (!$authHeader) {
+            throw new \Exception("Unauthenticated", 401);
+        }
+
+        // Extract token from "Bearer {token}" format
+        $token = null;
+        if (preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
+            $token = $matches[1];
+        }
+
+        if (!$token) {
+            throw new \Exception("Unauthenticated", 401);
+        }
+
+        // Find user by token in database
+        $user = $this->userService->authenticateByToken($token);
+
         if (!$user) {
             throw new \Exception("Unauthenticated", 401);
         }
 
-        // TODO: Add role check here (e.g., if ($user->role !== 'admin'))
+        // Check if user is admin
+        if ($user->role !== 'admin') {
+            throw new \Exception("Unauthorized", 403);
+        }
 
         return $this->userService->getAllUsers();
     }
@@ -55,12 +77,9 @@ class UserResolver
     {
         $user = $this->userService->loginWithGoogle($args['token']);
         
-        // Create token (if using Laravel Sanctum/Passport)
-        // $token = $user->createToken('auth-token')->plainTextToken;
-        
         return [
             'user' => $user,
-            // 'token' => $token,
+            'token' => $user->token,
         ];
     }
 
