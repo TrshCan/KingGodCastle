@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             HeroesSeeder::class,
             HeroBaseStatsSeeder::class,
             HeroSkillsSeeder::class,
+            LegaciesSeeder::class,
         ]);
 
         // Items and effects
@@ -57,6 +58,8 @@ class DatabaseSeeder extends Seeder
             MessagesSeeder::class,
             MailsSeeder::class,
             QuestsSeeder::class,
+            HeroBannersSeeder::class,
+            LegacyBannersSeeder::class,
         ]);
     }
 }

@@ -47,7 +47,7 @@ class UserResolver
         
         return [
             'user' => $user,
-            // 'token' => $token,
+            'token' => $user->token,
         ];
     }
 
