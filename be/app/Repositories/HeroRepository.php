@@ -29,7 +29,22 @@ class HeroRepository extends BaseRepository
 
     public function getAllHeroesWithDetails()
     {
-        return $this->model->with(['region', 'heroClass', 'baseStats', 'skills'])->get();
+        return $this->model->with(['region', 'heroClass', 'baseStats', 'skills', 'userHeroes'])->get();
+    }
+
+    public function createHero(array $data): Hero
+    {
+        return $this->create($data);
+    }
+
+    public function updateHero(int $heroId, array $data): bool
+    {
+        return $this->update($heroId, $data);
+    }
+
+    public function deleteHero(int $heroId): bool
+    {
+        return $this->delete($heroId);
     }
 }
 

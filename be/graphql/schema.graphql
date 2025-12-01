@@ -18,6 +18,7 @@
 # Import all inputs
 #import inputs/user.graphql
 #import inputs/team.graphql
+#import inputs/hero.graphql
 
 # Import Query type
 #import queries/index.graphql

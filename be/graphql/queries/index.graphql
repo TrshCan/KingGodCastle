@@ -30,6 +30,12 @@ type Query {
   # Inventory Queries
   myInventory: [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@myInventory")
   
+  # Region Queries
+  regions: [Region!]! @field(resolver: "App\\GraphQL\\Resolvers\\RegionResolver@regions")
+  
+  # HeroClass Queries
+  heroClasses: [HeroClass!]! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@heroClasses")
+  
   # Admin Queries
   adminInventories(userId: Int): [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@adminInventories")
   adminQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@adminQuests")

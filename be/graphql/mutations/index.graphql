@@ -25,4 +25,9 @@ type Mutation {
   # Inventory Mutations
   addItem(itemId: ID!, quantity: Int): Inventory! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@addItem")
   useItem(itemId: ID!, userHeroId: ID): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@useItem")
+  
+  # Hero Mutations (Admin)
+  createHero(input: CreateHeroInput!): Hero! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@createHero")
+  updateHero(id: ID!, input: UpdateHeroInput!): Hero! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@updateHero")
+  deleteHero(id: ID!): SuccessResponse! @field(resolver: "App\\GraphQL\\Resolvers\\HeroResolver@deleteHero")
 }
