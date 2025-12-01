@@ -231,7 +231,7 @@ CREATE TABLE `hero_skills` (
 INSERT INTO `hero_skills` (`id`, `hero_id`, `name`, `description`, `type`, `icon`) VALUES
 (1, 1, 'Lunar Aegis', '<Blessing of the Blue Moon> grants 1 Mighty Block to the target.', 'passive', NULL),
 (2, 1, 'Moonlit Resilience', 'After the end of <Blessing of the Blue Moon>, buff remains for an additional 2 turns.', 'passive', NULL),
-(3, 1, 'Swift Blessing', 'Luniare recovers 100% MP if the target\'s is after Luniare at the begining of the battle. +20% Movement Speed on the target of <Blessing of the Blue Moon>.', 'awakening', NULL),
+(3, 1, 'Swift Blessing', 'Luniare recovers 100% MP if the target\'s is after Luniare at the beginning of the battle. +20% Movement Speed on the target of <Blessing of the Blue Moon>.', 'awakening', NULL),
 (4, 1, 'Protection of the Moon', 'No longer grants Protection when <Blessing of the Blue Moon> is cast. +2 Mighty Blocks to the target of <Blessing of the Blue Moon>', 'awakening', NULL),
 (5, 1, 'Blessing of the Blue Moon', 'Concentrates for 5 turns, granting 15/60/120/250+SP Protection to the linked target and giving 90/100/110/120% of ATK and Spell Power converted into the target hero\'s base stats.', 'ultimate', NULL),
 (6, 2, 'Knight’s Bulwark', '+50% For all obtained Protection.', 'passive', NULL),
