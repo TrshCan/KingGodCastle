@@ -3,10 +3,13 @@
 namespace App\GraphQL\Resolvers;
 
 use App\Services\UserHeroService;
+use App\GraphQL\Resolvers\Traits\AuthenticatesAdmin;
 use Illuminate\Support\Facades\Auth;
 
 class UserHeroResolver
 {
+    use AuthenticatesAdmin;
+
     public function __construct(
         protected UserHeroService $userHeroService
     ) {}
@@ -47,6 +50,14 @@ class UserHeroResolver
             $args['userHeroId'],
             $args['xp']
         );
+    }
+
+    public function adminUserHeroes($root, array $args)
+    {
+        $this->authenticateAdmin();
+        
+        $userId = $args['userId'] ?? null;
+        return $this->userHeroService->getAllUserHeroes($userId);
     }
 }
 

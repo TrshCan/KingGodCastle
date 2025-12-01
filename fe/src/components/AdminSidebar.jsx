@@ -7,7 +7,13 @@ import {
   BarChart3,
   FileText,
   Crown,
-  Home
+  Home,
+  Package,
+  BookOpen,
+  UserPlus,
+  MapPin,
+  ShoppingBag,
+  Sparkles
 } from 'lucide-react';
 
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
@@ -32,6 +38,48 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
       title: 'Manage Heroes', 
       path: '/admin/heroes',
       color: 'text-green-400'
+    },
+    { 
+      icon: Users, 
+      title: 'User Heroes', 
+      path: '/admin/user-heroes',
+      color: 'text-cyan-400'
+    },
+    { 
+      icon: Package, 
+      title: 'Inventories', 
+      path: '/admin/inventories',
+      color: 'text-orange-400'
+    },
+    { 
+      icon: BookOpen, 
+      title: 'Quests', 
+      path: '/admin/quests',
+      color: 'text-indigo-400'
+    },
+    { 
+      icon: UserPlus, 
+      title: 'Friends', 
+      path: '/admin/friends',
+      color: 'text-pink-400'
+    },
+    { 
+      icon: MapPin, 
+      title: 'Regions', 
+      path: '/admin/regions',
+      color: 'text-emerald-400'
+    },
+    { 
+      icon: ShoppingBag, 
+      title: 'Items', 
+      path: '/admin/items',
+      color: 'text-amber-400'
+    },
+    { 
+      icon: Sparkles, 
+      title: 'Item Effects', 
+      path: '/admin/item-effects',
+      color: 'text-violet-400'
     },
     { 
       icon: BarChart3, 

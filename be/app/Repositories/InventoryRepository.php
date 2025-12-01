@@ -58,5 +58,16 @@ class InventoryRepository extends BaseRepository
         $inventory->quantity -= $quantity;
         return $inventory->save();
     }
+
+    public function getAllInventories(?int $userId = null)
+    {
+        $query = $this->model->with(['user', 'item']);
+        
+        if ($userId) {
+            $query->where('user_id', $userId);
+        }
+        
+        return $query->get();
+    }
 }
 

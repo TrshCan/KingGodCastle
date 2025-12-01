@@ -29,4 +29,13 @@ type Query {
   
   # Inventory Queries
   myInventory: [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@myInventory")
+  
+  # Admin Queries
+  adminInventories(userId: Int): [Inventory!]! @field(resolver: "App\\GraphQL\\Resolvers\\InventoryResolver@adminInventories")
+  adminQuests: [Quest!]! @field(resolver: "App\\GraphQL\\Resolvers\\QuestResolver@adminQuests")
+  adminUserHeroes(userId: Int): [UserHero!]! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@adminUserHeroes")
+  adminFriends(userId: Int): [Friend!]! @field(resolver: "App\\GraphQL\\Resolvers\\FriendResolver@adminFriends")
+  adminRegions: [Region!]! @field(resolver: "App\\GraphQL\\Resolvers\\RegionResolver@adminRegions")
+  adminItems(type: String): [Sundry!]! @field(resolver: "App\\GraphQL\\Resolvers\\SundryResolver@adminItems")
+  adminItemEffects(itemId: Int): [ItemEffect!]! @field(resolver: "App\\GraphQL\\Resolvers\\ItemEffectResolver@adminItemEffects")
 }

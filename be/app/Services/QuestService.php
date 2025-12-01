@@ -55,5 +55,10 @@ class QuestService
             }
         }
     }
+
+    public function getAllQuests()
+    {
+        return $this->questRepository->getAllQuests();
+    }
 }
 

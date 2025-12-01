@@ -3,10 +3,13 @@
 namespace App\GraphQL\Resolvers;
 
 use App\Services\InventoryService;
+use App\GraphQL\Resolvers\Traits\AuthenticatesAdmin;
 use Illuminate\Support\Facades\Auth;
 
 class InventoryResolver
 {
+    use AuthenticatesAdmin;
+
     public function __construct(
         protected InventoryService $inventoryService
     ) {}
@@ -49,6 +52,14 @@ class InventoryResolver
         );
         
         return ['success' => true];
+    }
+
+    public function adminInventories($root, array $args)
+    {
+        $this->authenticateAdmin();
+        
+        $userId = $args['userId'] ?? null;
+        return $this->inventoryService->getAllInventories($userId);
     }
 }
 

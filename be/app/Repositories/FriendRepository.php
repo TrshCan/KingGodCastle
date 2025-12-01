@@ -44,5 +44,16 @@ class FriendRepository extends BaseRepository
         }
         return false;
     }
+
+    public function getAllFriendships(?int $userId = null)
+    {
+        $query = $this->model->with(['user', 'friend']);
+        
+        if ($userId) {
+            $query->where('user_id', $userId);
+        }
+        
+        return $query->get();
+    }
 }
 

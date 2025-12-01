@@ -3,10 +3,13 @@
 namespace App\GraphQL\Resolvers;
 
 use App\Services\FriendService;
+use App\GraphQL\Resolvers\Traits\AuthenticatesAdmin;
 use Illuminate\Support\Facades\Auth;
 
 class FriendResolver
 {
+    use AuthenticatesAdmin;
+
     public function __construct(
         protected FriendService $friendService
     ) {}
@@ -61,6 +64,14 @@ class FriendResolver
 
         $this->friendService->removeFriend($user->id, $args['friendId']);
         return ['success' => true];
+    }
+
+    public function adminFriends($root, array $args)
+    {
+        $this->authenticateAdmin();
+        
+        $userId = $args['userId'] ?? null;
+        return $this->friendService->getAllFriendships($userId);
     }
 }
 
