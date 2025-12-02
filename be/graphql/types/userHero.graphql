@@ -1,7 +1,7 @@
 type UserHero {
   id: ID!
-  userId: Int!
-  heroId: Int!
+  userId: Int! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@userId")
+  heroId: Int! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroResolver@heroId")
   level: Int!
   xp: Int!
   user: User @belongsTo

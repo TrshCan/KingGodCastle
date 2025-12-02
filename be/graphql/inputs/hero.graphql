@@ -4,6 +4,7 @@ input CreateHeroInput {
   classId: Int!
   title: String
   description: String
+  rarity: String
   icon: String
   illustration: String
   card: String
@@ -15,6 +16,7 @@ input UpdateHeroInput {
   classId: Int
   title: String
   description: String
+  rarity: String
   icon: String
   illustration: String
   card: String

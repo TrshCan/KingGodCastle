@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useToast } from '../../contexts/ToastContext';
 import { getHeroes, getRegions, getHeroClasses, createHero, updateHero, deleteHero, getHero } from '../../api/graphql/hero';
 import AdminLayout from '../../components/AdminLayout';
-import HeroCard from '../../components/HeroCard';
+import AdminHeroCard from '../../components/AdminHeroCard';
 import HeroForm from '../../components/HeroForm';
 import HeroDetail from '../../components/HeroDetail';
 import { 
@@ -78,8 +78,10 @@ const ManageHeroes = () => {
     }
   };
 
-  // Determine rarity based on HP
+  // Get rarity from database, fallback to calculated if not available
   const getRarity = (hero) => {
+    if (hero.rarity) return hero.rarity;
+    // Fallback calculation based on HP
     const hp = hero.baseStats?.HP || 0;
     if (hp >= 2500) return 'legendary';
     if (hp >= 2000) return 'epic';
@@ -88,9 +90,12 @@ const ManageHeroes = () => {
   };
 
   const rarityColors = {
+    unique: 'text-pink-400 bg-pink-500/20 border-pink-500/50',
+    mythic: 'text-red-400 bg-red-500/20 border-red-500/50',
     legendary: 'text-yellow-400 bg-yellow-500/20 border-yellow-500/50',
     epic: 'text-purple-400 bg-purple-500/20 border-purple-500/50',
     rare: 'text-blue-400 bg-blue-500/20 border-blue-500/50',
+    uncommon: 'text-green-400 bg-green-500/20 border-green-500/50',
     common: 'text-gray-400 bg-gray-500/20 border-gray-500/50'
   };
 
@@ -172,6 +177,7 @@ const ManageHeroes = () => {
         classId: parseInt(formData.classId),
         title: formData.title || null,
         description: formData.description || null,
+        rarity: formData.rarity || 'common',
         icon: formData.icon || null,
         illustration: formData.illustration || null,
         card: formData.card || null,
@@ -292,9 +298,12 @@ const ManageHeroes = () => {
                   className="pl-10 pr-8 py-3 bg-slate-800/40 backdrop-blur-xl border border-white/10 rounded-xl text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition cursor-pointer appearance-none"
                 >
                   <option value="all">All Rarities</option>
+                  <option value="unique">Unique</option>
+                  <option value="mythic">Mythic</option>
                   <option value="legendary">Legendary</option>
                   <option value="epic">Epic</option>
                   <option value="rare">Rare</option>
+                  <option value="uncommon">Uncommon</option>
                   <option value="common">Common</option>
                 </select>
               </div>
@@ -317,7 +326,7 @@ const ManageHeroes = () => {
           {/* Heroes Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredHeroes.map((hero) => (
-              <HeroCard
+              <AdminHeroCard
                 key={hero.id}
                 hero={hero}
                 onEdit={handleEdit}

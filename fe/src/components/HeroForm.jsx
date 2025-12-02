@@ -13,6 +13,7 @@ const HeroForm = ({ hero, regions = [], heroClasses = [], onSave, onCancel, isLo
     classId: '',
     title: '',
     description: '',
+    rarity: 'common',
     icon: '',
     illustration: '',
     card: '',
@@ -26,6 +27,7 @@ const HeroForm = ({ hero, regions = [], heroClasses = [], onSave, onCancel, isLo
         classId: String(hero.heroClass?.id || hero.classId || ''),
         title: hero.title || '',
         description: hero.description || '',
+        rarity: hero.rarity || 'common',
         icon: hero.icon || '',
         illustration: hero.illustration || '',
         card: hero.card || '',
@@ -38,6 +40,7 @@ const HeroForm = ({ hero, regions = [], heroClasses = [], onSave, onCancel, isLo
         classId: '',
         title: '',
         description: '',
+        rarity: 'common',
         icon: '',
         illustration: '',
         card: '',
@@ -134,6 +137,26 @@ const HeroForm = ({ hero, regions = [], heroClasses = [], onSave, onCancel, isLo
                   ) : (
                     <option value="" disabled>Loading classes...</option>
                   )}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1.5">
+                  Rarity
+                </label>
+                <select
+                  name="rarity"
+                  value={formData.rarity}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 bg-slate-900/50 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition cursor-pointer appearance-none"
+                >
+                  <option value="common">Common</option>
+                  <option value="uncommon">Uncommon</option>
+                  <option value="rare">Rare</option>
+                  <option value="epic">Epic</option>
+                  <option value="legendary">Legendary</option>
+                  <option value="mythic">Mythic</option>
+                  <option value="unique">Unique</option>
                 </select>
               </div>
 

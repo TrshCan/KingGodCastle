@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('class_id')->nullable()->constrained('classes')->nullOnDelete();
             $table->string('title', 100)->nullable();
             $table->text('description')->nullable();
+            $table->enum('rarity', ['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic', 'unique'])->default('common');
             $table->string('icon', 100)->nullable();
             $table->string('illustration', 100)->nullable();
             $table->string('card', 255)->nullable();

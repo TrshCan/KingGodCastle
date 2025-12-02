@@ -1,6 +1,6 @@
 type UserHeroStat {
   id: ID!
-  userHeroId: Int!
+  userHeroId: Int! @field(resolver: "App\\GraphQL\\Resolvers\\UserHeroStatResolver@userHeroId")
   ATK: Int!
   Spell: Int!
   ATK_SPEED: Float!
