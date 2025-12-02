@@ -5,6 +5,7 @@ type Hero {
   classId: Int!
   title: String
   description: String
+  rarity: String!
   icon: String
   illustration: String
   card: String

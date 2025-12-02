@@ -11,6 +11,72 @@ const extractErrorMessage = (errors) => {
   return 'An unknown error occurred';
 };
 
+/**
+ * Get current user's heroes
+ * @returns {Promise<Array>}
+ */
+export const getMyHeroes = async () => {
+  try {
+    const response = await graphqlClient.post('', {
+      query: `
+        query myHeroes {
+          myHeroes {
+            id
+            userId
+            heroId
+            level
+            xp
+            hero {
+              id
+              name
+              title
+              description
+              rarity
+              icon
+              illustration
+              card
+              region {
+                id
+                name
+                icon
+              }
+              heroClass {
+                id
+                name
+                icon
+              }
+              baseStats {
+                id
+                HP
+                ATK
+                Spell
+                Physical_DEF
+                Spell_DEF
+              }
+            }
+            stats {
+              id
+              HP
+              ATK
+              Spell
+              Physical_DEF
+              Spell_DEF
+            }
+          }
+        }
+      `,
+    });
+
+    if (response.data.errors) {
+      throw new Error(extractErrorMessage(response.data.errors));
+    }
+
+    return response.data.data.myHeroes;
+  } catch (error) {
+    throw new Error(error.response?.data?.errors ? extractErrorMessage(error.response.data.errors) : error.message);
+  }
+};
+
 // Admin User Heroes
 export const getAdminUserHeroes = async (userId = null) => {
   try {

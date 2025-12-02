@@ -25,6 +25,7 @@ export const getHeroes = async () => {
             name
             title
             description
+            rarity
             icon
             illustration
             card
@@ -75,6 +76,7 @@ export const getHero = async (id) => {
             name
             title
             description
+            rarity
             icon
             illustration
             card
@@ -203,6 +205,7 @@ export const createHero = async (input) => {
             name
             title
             description
+            rarity
             icon
             illustration
             card
@@ -246,6 +249,7 @@ export const updateHero = async (id, input) => {
             name
             title
             description
+            rarity
             icon
             illustration
             card

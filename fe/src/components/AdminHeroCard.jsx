@@ -9,7 +9,7 @@ import {
   Eye
 } from 'lucide-react';
 
-const HeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) => {
+const AdminHeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) => {
   // Determine rarity based on hero data or default to 'common'
   // You can customize this logic based on your game's rarity system
   const getRarity = () => {
@@ -26,9 +26,12 @@ const HeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) => {
 
   const rarity = getRarity();
   const defaultRarityColors = {
+    unique: 'text-pink-400 bg-pink-500/20 border-pink-500/50',
+    mythic: 'text-red-400 bg-red-500/20 border-red-500/50',
     legendary: 'text-yellow-400 bg-yellow-500/20 border-yellow-500/50',
     epic: 'text-purple-400 bg-purple-500/20 border-purple-500/50',
     rare: 'text-blue-400 bg-blue-500/20 border-blue-500/50',
+    uncommon: 'text-green-400 bg-green-500/20 border-green-500/50',
     common: 'text-gray-400 bg-gray-500/20 border-gray-500/50'
   };
 
@@ -37,12 +40,18 @@ const HeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) => {
   // Get gradient color based on rarity
   const getGradientColor = () => {
     switch (rarity) {
+      case 'unique':
+        return 'from-pink-600 to-rose-600';
+      case 'mythic':
+        return 'from-red-600 to-orange-600';
       case 'legendary':
         return 'from-yellow-600 to-orange-600';
       case 'epic':
         return 'from-purple-600 to-pink-600';
       case 'rare':
         return 'from-blue-600 to-cyan-600';
+      case 'uncommon':
+        return 'from-green-600 to-emerald-600';
       default:
         return 'from-gray-600 to-slate-600';
     }
@@ -152,5 +161,5 @@ const HeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) => {
   );
 };
 
-export default HeroCard;
+export default AdminHeroCard;
 

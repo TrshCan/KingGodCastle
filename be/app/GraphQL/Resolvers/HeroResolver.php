@@ -52,6 +52,7 @@ class HeroResolver
             'class_id' => $input['classId'],
             'title' => $input['title'] ?? null,
             'description' => $input['description'] ?? null,
+            'rarity' => $input['rarity'] ?? 'common',
             'icon' => $input['icon'] ?? null,
             'illustration' => $input['illustration'] ?? null,
             'card' => $input['card'] ?? null,
@@ -72,6 +73,7 @@ class HeroResolver
         if (isset($input['classId'])) $data['class_id'] = $input['classId'];
         if (isset($input['title'])) $data['title'] = $input['title'];
         if (isset($input['description'])) $data['description'] = $input['description'];
+        if (isset($input['rarity'])) $data['rarity'] = $input['rarity'];
         if (isset($input['icon'])) $data['icon'] = $input['icon'];
         if (isset($input['illustration'])) $data['illustration'] = $input['illustration'];
         if (isset($input['card'])) $data['card'] = $input['card'];

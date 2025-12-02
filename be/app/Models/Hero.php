@@ -17,6 +17,7 @@ class Hero extends Model
         'class_id',
         'title',
         'description',
+        'rarity',
         'icon',
         'illustration',
         'card',

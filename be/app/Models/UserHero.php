@@ -43,6 +43,17 @@ class UserHero extends Model
         return $this->belongsToMany(Sundry::class, 'user_hero_legacies', 'user_hero_id', 'legacy_id');
     }
 
+    // Accessor methods for GraphQL camelCase fields
+    public function getUserIdAttribute()
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function getHeroIdAttribute()
+    {
+        return $this->attributes['hero_id'];
+    }
+
     // Note: Teams relationship is complex due to multiple slot columns
     // Use direct queries or accessor methods instead
     public function getTeamsAttribute()
