@@ -61,6 +61,21 @@ const AdminHeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) =>
   const heroIcon = hero.icon || hero.avatar || '⚔️';
   const userCount = hero.userHeroes?.length || hero.users || 0;
   const level = hero.level; // Optional - only show if provided
+  
+  // Get illustration path
+  const getIllustrationPath = () => {
+    if (hero.illustration) {
+      // If it's a full URL, use it directly
+      if (hero.illustration.startsWith('http')) {
+        return hero.illustration;
+      }
+      // If it's a relative path, prepend the assets path
+      return `/src/assets/img/heroes/illustration/${hero.illustration}`;
+    }
+    return null;
+  };
+
+  const illustrationPath = getIllustrationPath();
 
   return (
     <div 
@@ -69,9 +84,27 @@ const AdminHeroCard = ({ hero, onEdit, onDelete, onView, rarityColors = {} }) =>
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
-        <div className={`w-16 h-16 bg-gradient-to-br ${getGradientColor()} rounded-full flex items-center justify-center text-3xl shadow-lg`}>
-          {heroIcon}
-        </div>
+        {illustrationPath ? (
+          <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg border-2 border-white/10">
+            <img 
+              src={illustrationPath} 
+              alt={hero.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                // Fallback to icon if image fails to load
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className={`w-16 h-16 bg-gradient-to-br ${getGradientColor()} rounded-full flex items-center justify-center text-3xl shadow-lg hidden`}>
+              {heroIcon}
+            </div>
+          </div>
+        ) : (
+          <div className={`w-16 h-16 bg-gradient-to-br ${getGradientColor()} rounded-full flex items-center justify-center text-3xl shadow-lg`}>
+            {heroIcon}
+          </div>
+        )}
         <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold border ${rarityColor}`}>
           <Star className="w-3 h-3" />
           {rarity}
